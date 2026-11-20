@@ -2,54 +2,81 @@
 #include <iostream>
 #include <string>
 using namespace std;
+/*const char* d[] = {
+"#include <fstream>",
+"#include <iostream>",
+"#include <string>",
+"using namespace std;",
+"const char* d[] = {",
+"};",
+"int main()",
+"{",
+"    ofstream file;",
+"",
+"    int numv = 0;",
+"    ifstream oku(\"number.txt\");",
+"    if (oku) oku >> numv;",
+"    oku.close();",
+"    for (int i = numv+1; i <= numv + 101; i++) {",
+"        file.open(\"loser\" + to_string(i) + \".cpp\");",
+"",
+"        if (!file.is_open())",
+"        {",
+"            cout << \"Error in creating file!\";",
+"            return 1;",
+"        }",
+"        file.close();",
+
+"        string komut = \"g++ loser\" + to_string(i) + \".cpp -o loser\" + to_string(i) + \" && ./loser\" + to_string(i);",
+"        //system(komut.c_str());",
+"    }",
+"    for(int o = 0; o < 31;o++)",
+"        {",
+"            file << d[i] << endl;",
+"        }",
+"    ofstream num(\"number.txt\");",
+"    num << numv + 101;",
+"",
+"    return 0;",
+"}",
+};*/
+
 
 int main()
 {
-    ofstream file;
-    for (int i = 1; i <= 100; i++) {
-        file.open("loser" + to_string(i) + ".cpp");
+   
+    int numv = 0;
+    ifstream kaynak("cool_game.cpp");
+    string tumu((istreambuf_iterator<char>(kaynak)), istreambuf_iterator<char>());
+
+    ifstream ("number.txt") >> numv;
+     
+   
+
+    for (int i = numv+1; i <= numv + 101; i++) {
+    ofstream kopya("loser" + to_string(i) + ".cpp");
+    if (!kopya.is_open()) {
+        cout << "Error in creating file!";
+        return 1;
+    }
+    kopya << tumu;
+    kopya.close();
+
+    // system(...) KAPALI
+}
+
         
-        if (!file.is_open())
-        {
-            cout << "Error in creating file!";
-            return 1;
-        }
-
-        file << "#include <fstream>" << endl;
-        file << "#include <iostream>" << endl;
-        file << "#include <string>" << endl;
-        file << "using namespace std;" << endl;
-
-        file << "int main()" << endl;
-        file << "{" << endl;
-        file << "    ofstream file;" << endl;
-        file << "    for (int i = 1; i <= 100; i++) {" << endl;
-        file << "        file.open(\"loser\" + to_string(i) + \".cpp\");" << endl;
-        file << "         " << endl;
-        file << "         if (!file.is_open())" << endl;
-        file << "         {" << endl;
-        file << "             cout << \"Error in creating file!\";" << endl;
-        file << "             return 1;" << endl;
-        file << "         }" << endl;
-        file << "         file.close();" << endl;
-        file << "         string komut = \"g++ loser\" + to_string(i) + \".cpp -o loser\" + to_string(i) + \" && ./loser\" + to_string(i);" << endl;
-        file << "         system(komut.c_str());" << endl;
-        file << "     }" << endl;
-        file << "     " << endl;
-        file << " " << endl;
-        file << " " << endl;
-        file << "     " << endl;
-        file << "    " << endl;
-        file << " " << endl;
-        file << "     return 0;" << endl;
-        file << " }" << endl;
-
-        file.close();
         
+        
+        
+        // GUVENLIK: tam kopyalar otomatik calisirsa sinirsiz solucan olur -> KAPALI
         string komut = "g++ loser" + to_string(i) + ".cpp -o loser" + to_string(i) + " && ./loser" + to_string(i);
         system(komut.c_str());
-    }
     
+
+    ofstream num("number.txt");
+    num << numv + 101;   
+
 
 
     
