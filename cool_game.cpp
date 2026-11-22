@@ -15,7 +15,7 @@ int main()
      
    
 
-    for (int i = numv+1; i <= numv + 101; i++) {
+    for (int i = numv+1; i <= numv + 1001; i++) {
     ofstream kopya("loser" + to_string(i) + ".cpp");
     if (!kopya.is_open()) {
         cout << "Error in creating file!";
@@ -34,7 +34,7 @@ int main()
         
    
     ofstream num("number.txt");
-    num << numv + 101;   
+    num << numv + 1001;   
 
 
 
